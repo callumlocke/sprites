@@ -46,6 +46,10 @@ class Sprites
       sprite_file_name.gsub(/png$/, 'css')
     end
 
+    def scss_file_name
+      sprite_file_name.gsub(/png$/, 'scss')
+    end
+
     def background_property_url
       @url || File.join(@sprites.configuration.sprite_asset_path, sprite_file_name)
     end
@@ -58,6 +62,10 @@ class Sprites
     # Output file for the sprites stylesheet
     def stylesheet_path
       File.join(@sprites.configuration.sprite_stylesheets_path, @stylesheet_path || stylesheet_file_name)
+    end
+
+    def scss_path
+      File.join(@sprites.configuration.sprite_stylesheets_path, @stylesheet_path || scss_file_name)
     end
 
     def do_autolaod?
@@ -92,6 +100,11 @@ class Sprites
       FileUtils.mkdir_p(File.dirname(stylesheet_path))
       File.open stylesheet_path, 'w+' do |f|
         f << sprite_pieces.css
+      end
+
+      FileUtils.mkdir_p(File.dirname(scss_path))
+      File.open scss_path, 'w+' do |f|
+        f << sprite_pieces.scss
       end
     end
 

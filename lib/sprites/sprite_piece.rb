@@ -37,6 +37,17 @@ class Sprites
       CSS
     end
 
+    def scss
+      <<-CSS
+@mixin #{selector}_sprite($x=0) {
+  display:block;
+  width:#{width}px;
+  height:#{height}px;
+  background:url('#{background_property_url}?#{Time.now.to_i}') no-repeat #{x || negative_pixelize(left)} #{y || negative_pixelize(top)};
+}
+      CSS
+    end
+
     private
 
     def negative_pixelize(val)
