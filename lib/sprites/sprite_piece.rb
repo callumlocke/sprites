@@ -41,10 +41,11 @@ class Sprites
       name = selector.gsub('.','')
       <<-CSS
 @mixin #{name}-sprite($x:0) {
-  display:block;
-  width:#{width}px;
-  height:#{height}px;
-  background:url('#{background_property_url}?#{Time.now.to_i}') no-repeat $x #{y || negative_pixelize(top)};
+  @if unitless($x) { $x: 1px * $x; }
+  display: block;
+  width: #{width}px;
+  height: #{height}px;
+  background: url('#{background_property_url}?#{Time.now.to_i}') no-repeat $x #{y || negative_pixelize(top)};
 }
       CSS
     end
