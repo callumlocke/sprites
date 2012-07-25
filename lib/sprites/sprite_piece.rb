@@ -40,7 +40,7 @@ class Sprites
     def scss
       name = selector.gsub('.','')
       <<-CSS
-@mixin #{name}_sprite($x:0) {
+@mixin #{name}-sprite($x:0) {
   display:block;
   width:#{width}px;
   height:#{height}px;
