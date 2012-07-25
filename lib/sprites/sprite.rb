@@ -47,7 +47,7 @@ class Sprites
     end
 
     def scss_file_name
-      sprite_file_name.gsub(/png$/, 'scss')
+      sprite_file_name.gsub(/png$/, 'css.scss')
     end
 
     def background_property_url
