@@ -13,9 +13,9 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "sprites"
 
-  files = `git ls-files`.split("\n")
-  s.files         = files
-  s.test_files    = files.find_all { |path| path =~ /^(test,spec,features)/ }
+  # files = `git ls-files`.split("\n")
+  # s.files         = files
+  # s.test_files    = files.find_all { |path| path =~ /^(test,spec,features)/ }
   s.executables   = files.find_all { |path| path =~ /^bin/ }.map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
