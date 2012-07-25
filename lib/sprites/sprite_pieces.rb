@@ -14,7 +14,7 @@ class Sprites
     def add(path, css_selector, options = {})
       @sprite_pieces[path].css_selector = css_selector
       @sprite_pieces[path].configure(options)
-      
+
       self
     end
 
@@ -41,5 +41,10 @@ class Sprites
     def css
       @sprite_pieces.values.map {|sp| sp.css}.join("\n")
     end
+
+    def scss
+      @sprite_pieces.values.map {|sp| sp.scss}.join("\n")
+    end
+
   end
 end
