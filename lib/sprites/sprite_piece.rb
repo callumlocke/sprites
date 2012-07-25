@@ -39,7 +39,7 @@ class Sprites
 
     def scss
       <<-CSS
-@mixin #{selector}_sprite($x=0) {
+@mixin #{name}_sprite($x=0) {
   display:block;
   width:#{width}px;
   height:#{height}px;
