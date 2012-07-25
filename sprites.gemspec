@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Sprites generator for ruby applications or from cli}
   s.description = %q{Sprites generator for ruby applications or from cli}
 
-  # s.rubyforge_project = "sprites"
+  s.rubyforge_project = "sprites"
 
   # files = `git ls-files`.split("\n")
   # s.files         = files
