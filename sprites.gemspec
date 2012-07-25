@@ -5,11 +5,11 @@ require "sprites/version"
 Gem::Specification.new do |s|
   s.name        = "sprites"
   s.version     = Sprites::VERSION
-  # s.authors     = ["Sam Woodard"]
-  # s.email       = ["sam@activecodebase.com"]
-  # s.homepage    = "https://github.com/shwoodard/sprites"
+  s.authors     = ["Sam Woodard"]
+  s.email       = ["sam@activecodebase.com"]
+  s.homepage    = "https://github.com/shwoodard/sprites"
   s.summary     = %q{Sprites generator for ruby applications or from cli}
-  # s.description = %q{Sprites generator for ruby applications or from cli}
+  s.description = %q{Sprites generator for ruby applications or from cli}
 
   # s.rubyforge_project = "sprites"
 
