@@ -47,7 +47,7 @@ class Sprites
     end
 
     def scss_file_name
-      sprite_file_name.gsub(/png$/, 'css.scss')
+      sprite_file_name.gsub(/.png$/, '_sprite_mixins.css.scss')
     end
 
     def background_property_url
@@ -108,7 +108,7 @@ class Sprites
       end
     end
 
-    ## 
+    ##
     # The +sprite_piece+ method adds sprite_piecess to the sprite
     #
     # === Example ===
