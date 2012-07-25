@@ -65,7 +65,7 @@ class Sprites
     end
 
     def scss_path
-      File.join(@sprites.configuration.sprite_stylesheets_path || scss_file_name)
+      File.join(@sprites.configuration.sprite_stylesheets_path, scss_file_name)
     end
 
     def do_autolaod?
