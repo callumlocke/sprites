@@ -38,6 +38,7 @@ class Sprites
     end
 
     def scss
+      name = selector.gsub('.','')
       <<-CSS
 @mixin #{name}_sprite($x=0) {
   display:block;
