@@ -4,6 +4,8 @@ rescue
   require 'chunky_png'
 end
 
+require 'rmagick'
+
 class Sprites
   class ChunkyPngGenerator
     attr_reader :sprites
@@ -65,6 +67,10 @@ class Sprites
         # 
         #   $stdout << "Writing sprite to #{sprite_file_path} ... " if verbose
           write sprite_path
+          if sprite_path[-9..-1] == '_jpeg.png'
+            convert_to_jpeg sprite_path 
+          end
+
         #   $stdout << "done.\n" if verbose
         # 
         #   $stdout << "Finished #{sprite.path} in #{Time.now - t_sprite} seconds.\n" if verbose
@@ -114,6 +120,13 @@ class Sprites
     def write(path, quality = nil)
       FileUtils.mkdir_p(File.dirname(path))
       @sprite.save(path)
+    end
+
+    def convert_to_jpeg(path, quality = nil)
+      jpeg = Magick::Image.read(path).first
+      jpeg.format = "JPEG"
+      jpeg.write path.gsub(/_jpeg.png$/, '.jpg')
+      File.delete(path)
     end
 
     def finish

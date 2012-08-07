@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "activesupport"
   s.add_runtime_dependency "oily_png"
+  s.add_runtime_dependency "rmagick"
 end

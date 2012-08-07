@@ -42,8 +42,16 @@ class Sprites
       @sprite_pieces.values.map {|sp| sp.css}.join("\n")
     end
 
+    def jpeg_css
+      @sprite_pieces.values.map {|sp| sp.jpeg_css}.join("\n")
+    end
+
     def scss
       @sprite_pieces.values.map {|sp| sp.scss}.join("\n")
+    end
+
+    def jpeg_scss
+      @sprite_pieces.values.map {|sp| sp.jpeg_scss}.join("\n")
     end
 
   end

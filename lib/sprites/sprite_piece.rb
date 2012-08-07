@@ -21,6 +21,10 @@ class Sprites
       @sprite.background_property_url
     end
 
+    def jpeg_background_property_url
+      @sprite.jpeg_background_property_url
+    end
+
     def source_path
       File.join(@sprites.configuration.sprite_pieces_path, path)
     end
@@ -37,6 +41,18 @@ class Sprites
       CSS
     end
 
+    def jpeg_css
+      <<-CSS
+#{selector}
+{
+  display:block;
+  width:#{width}px;
+  height:#{height}px;
+  background:url('#{jpeg_background_property_url}?#{Time.now.to_i}') no-repeat #{x || negative_pixelize(left)} #{y || negative_pixelize(top)};
+}
+      CSS
+    end
+
     def scss
       name = selector.gsub('.','')
       <<-CSS
@@ -46,6 +62,19 @@ class Sprites
   width: #{width}px;
   height: #{height}px;
   background: url('#{background_property_url}?#{Time.now.to_i}') no-repeat $x #{y || negative_pixelize(top)};
+}
+      CSS
+    end
+
+    def jpeg_scss
+      name = selector.gsub('.','')
+      <<-CSS
+@mixin #{name}-sprite($x:0) {
+  @if unitless($x) { $x: 1px * $x; }
+  display: block;
+  width: #{width}px;
+  height: #{height}px;
+  background: url('#{jpeg_background_property_url}?#{Time.now.to_i}') no-repeat $x #{y || negative_pixelize(top)};
 }
       CSS
     end

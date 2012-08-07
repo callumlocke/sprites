@@ -42,6 +42,10 @@ class Sprites
       "#{name}.png"
     end
 
+    def jpeg_sprite_file_name
+      name.to_s.gsub(/_jpeg$/, '') + ".jpg"
+    end
+
     def stylesheet_file_name
       sprite_file_name.gsub(/png$/, 'css')
     end
@@ -52,6 +56,10 @@ class Sprites
 
     def background_property_url
       @url || File.join(@sprites.configuration.sprite_asset_path, sprite_file_name)
+    end
+
+    def jpeg_background_property_url
+      @url || File.join(@sprites.configuration.sprite_asset_path, jpeg_sprite_file_name)
     end
 
     # Output file for the sprites image
@@ -97,14 +105,34 @@ class Sprites
     end
 
     def write_stylesheet(configuration, sprite_pieces = @sprite_pieces)
-      FileUtils.mkdir_p(File.dirname(stylesheet_path))
-      File.open stylesheet_path, 'w+' do |f|
-        f << sprite_pieces.css
+      css_save_path = stylesheet_path.gsub(/_jpeg.css$/, '.css')
+      scss_save_path = scss_path.gsub(
+        /_jpeg_sprite_mixins.css.scss$/, 
+        '_sprite_mixins.css.scss'
+      )
+
+      if scss_save_path == scss_path
+        using_jpeg = false
+      else
+        using_jpeg = true
       end
 
-      FileUtils.mkdir_p(File.dirname(scss_path))
-      File.open scss_path, 'w+' do |f|
-        f << sprite_pieces.scss
+      FileUtils.mkdir_p(File.dirname(css_save_path))
+      File.open css_save_path, 'w+' do |f|
+        if using_jpeg
+          f << sprite_pieces.jpeg_css
+        else
+          f << sprite_pieces.css
+        end
+      end
+
+      FileUtils.mkdir_p(File.dirname(scss_save_path))
+      File.open scss_save_path, 'w+' do |f|
+        if using_jpeg
+          f << sprite_pieces.jpeg_scss
+        else
+          f << sprite_pieces.scss
+        end
       end
     end
 
