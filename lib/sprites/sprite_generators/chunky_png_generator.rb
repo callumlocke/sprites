@@ -4,7 +4,11 @@ rescue
   require 'chunky_png'
 end
 
-require 'rmagick'
+begin
+  require 'rmagick'
+rescue LoadError
+  require 'RMagick'
+end
 
 class Sprites
   class ChunkyPngGenerator
